@@ -79,7 +79,7 @@ figure {
 
 figure::after {
   position: absolute;
-  content: attr(data-href);
+  content: attr(data-taken);
   right: 15px;
   bottom: 10px;
   font-family: "Bebas";
