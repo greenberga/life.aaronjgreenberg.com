@@ -5,6 +5,11 @@ $spacing: 5rem;
 $brand: #2e8540;
 $break: 700px;
 
+@font-face {
+    font-family: "Bebas";
+    src: url("/assets/Bebas-Regular.ttf");
+}
+
 html,
 body {
   margin: 0;
