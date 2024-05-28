@@ -21,9 +21,7 @@ summary: 'life.aaronjgreenberg.com'
 </div>
 
 {% for post in paginator.posts %}
-<div>
-  {{ post.content }}
-</div>
+{{ post.content }}
 {% endfor %}
 
 <div class="pagination">
