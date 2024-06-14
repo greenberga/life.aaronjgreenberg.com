@@ -83,13 +83,14 @@ figure::after {
   right: 15px;
   bottom: 10px;
   font-family: "Bebas";
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: #ffea73;
   text-shadow: 0px 0px 2px #ffe554;
+  visibility: hidden;
 }
 
 figure:hover::after {
-  visibility: hidden;
+  visibility: visible;
 }
 
 main {
