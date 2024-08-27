@@ -1,0 +1,85 @@
+@font-face {
+    font-family: "Bebas";
+    src: url("/assets/Bebas-Regular.ttf");
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after { box-sizing: inherit; }
+
+:root {
+    --gutter-size: 2%;
+    --column-size: 49%;
+}
+
+@media (min-width: 760px) {
+    :root {
+	--gutter-size: 2%;
+	--column-size: 32%;
+    }
+}
+
+@media (min-width: 1200px) {
+    :root {
+	--gutter-size: 1.3%;
+	--column-size: 24%;
+    }
+}
+
+body {
+    font-size: 18px;
+    line-height: 1.4;
+    padding: var(--gutter-size);
+    margin: 0 auto;
+}
+
+.grid.are-images-unloaded {
+    opacity: 0;
+}
+
+.grid-item,
+.grid-col-sizer {
+    width: var(--column-size);
+}
+
+@media (min-width: 760px) {
+    .grid > div:nth-child(3) {
+	width: calc(var(--column-size) * 2 + var(--gutter-size));
+    }
+
+    .grid > div:nth-child(3) img {
+	width: 100%;
+	object-fit: cover;
+    }
+}
+
+@media (min-width: 1200px) {
+    .grid > div:nth-child(3) {
+	width: calc(var(--column-size) * 3 + var(--gutter-size) * 2);
+    }
+}
+
+.grid-gutter-sizer {
+    width: var(--gutter-size);
+}
+
+.grid-item {
+  margin-bottom: var(--gutter-size);
+  float: left;
+}
+
+.grid-item * {
+  display: block;
+  max-width: 100%;
+}
+
+.grid-item > p {
+    margin: 0;
+}

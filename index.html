@@ -1,45 +1,43 @@
 ---
 layout: default
-prev: "&laquo;&nbsp;Previous"
-next: "Next&nbsp;&raquo;"
 type: website
 og_image: aaronjgreenberg.png
 summary: 'life.aaronjgreenberg.com'
 ---
 
-{% include header.html %}
-
-<p class="subscription">(Let me know if you want email updates when there are new posts!)</p>
-<div class="friends">
-  <span>Friends! 👫</span>
-  <ul>
-    <li><a href="http://drewheine.com/photos/">Lucy</a></li>
-    <li><a href="https://since30.jonmckay.org">Jon</a></li>
-    <li><a href="https://photos.jackgreenberg.co">Jack</a></li>
-    <li><a href="https://penis.ianriedel.com">Ian</a></li>
-  </ul>
-</div>
-
+<div class="grid are-images-unloaded">
+  <div class="grid-col-sizer"></div>
+  <div class="grid-gutter-sizer"></div>
 {% for post in paginator.posts %}
-{{ post.content }}
+  <div class="grid-item">
+    {{ post.content }}
+  </div>
 {% endfor %}
-
-<div class="pagination">
-  <div class="prev">
-    {% if paginator.previous_page %}
-    <a href="{{ paginator.previous_page_path }}">{{ page.prev }}</a>
-    {% else %}
-    <span>{{ page.prev }}</span>
-    {% endif %}
-  </div>
-  <div class="page">
-    <span>Page {{ paginator.page }} / {{ paginator.total_pages }}</span>
-  </div>
-  <div class="next">
-    {% if paginator.next_page %}
-    <a href="{{ paginator.next_page_path }}">{{ page.next }}</a>
-    {% else %}
-    <span>{{ page.next }}</span>
-    {% endif %}
-  </div>
 </div>
+
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script src="https://unpkg.com/infinite-scroll@4/dist/infinite-scroll.pkgd.min.js"></script>
+<script>
+  const grid = document.querySelector('.grid');
+
+  const msnry = new Masonry(grid, {
+      itemSelector: 'none',
+      columnWidth: '.grid-col-sizer',
+      gutter: '.grid-gutter-sizer',
+      percentPosition: true,
+      stagger: 30,
+  });
+
+  imagesLoaded(grid, function () {
+      grid.classList.remove('are-images-unloaded');
+      msnry.options.itemSelector = '.grid-item';
+      const items = grid.querySelectorAll('.grid-item');
+      msnry.appended(items);
+  });
+
+  const infScroll = new InfiniteScroll(grid, {
+      path: 'page/{% raw %}{{#}}{% endraw %}',
+      append: '.grid-item',
+      outlayer: msnry,
+  });
+</script>
