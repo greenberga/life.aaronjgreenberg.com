@@ -3,6 +3,7 @@ layout: default
 type: website
 og_image: aaronjgreenberg.png
 summary: 'life.aaronjgreenberg.com'
+extra_css: lightgallery-css.html
 ---
 
 <div class="grid-wrapper">
@@ -20,6 +21,8 @@ summary: 'life.aaronjgreenberg.com'
 
 <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 <script src="https://unpkg.com/infinite-scroll@4/dist/infinite-scroll.pkgd.min.js"></script>
+<script src="https://unpkg.com/lightgallery@2.7.2/lightgallery.min.js"></script>
+<script src="https://unpkg.com/lightgallery@2.7.2/plugins/fullscreen/lg-fullscreen.min.js"></script>
 <script>
   const grid = document.querySelector('.grid');
 
@@ -42,5 +45,23 @@ summary: 'life.aaronjgreenberg.com'
       path: '.pagination-next',
       append: '.grid-item',
       outlayer: msnry,
+  });
+
+  const lg = lightGallery(grid, {
+      download: false,
+      plugins: [ lgFullscreen ],
+      licenseKey: '0000-0000-000-0000',
+      selector: '.post',
+      loop: false,
+  });
+
+  infScroll.on('append', function () {
+      lg.refresh();
+  });
+
+  grid.addEventListener('lgAfterSlide', function (event) {
+      if (event.detail.index === lg.items.length - 5) {
+	  infScroll.loadNextPage();
+      }
   });
 </script>

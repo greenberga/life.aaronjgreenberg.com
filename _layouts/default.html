@@ -18,6 +18,9 @@
     <meta name="msapplication-config" content="/icons/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
     <link href="/css/styles.css" rel="stylesheet">
+    {% if page.extra_css %}
+    {% include {{ page.extra_css }} %}
+    {% endif %}
   </head>
   <body>
     <main>
