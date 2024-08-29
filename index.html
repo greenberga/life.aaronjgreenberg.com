@@ -5,14 +5,16 @@ og_image: aaronjgreenberg.png
 summary: 'life.aaronjgreenberg.com'
 ---
 
-<div class="grid are-images-unloaded">
-  <div class="grid-col-sizer"></div>
-  <div class="grid-gutter-sizer"></div>
-{% for post in paginator.posts %}
-  <div class="grid-item">
-    {{ post.content }}
+<div class="grid-wrapper">
+  <div class="grid are-images-unloaded">
+    <div class="grid-col-sizer"></div>
+    <div class="grid-gutter-sizer"></div>
+    {% for post in paginator.posts %}
+    <div class="grid-item">
+      {{ post.content }}
+    </div>
+    {% endfor %}
   </div>
-{% endfor %}
 </div>
 <a href="{{ paginator.next_page_path }}" class="pagination-next" style="display: none">Next page</a>
 

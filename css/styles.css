@@ -49,9 +49,14 @@ a:visited {
     color: #EFA9F9;
 }
 
-body {
-    padding: var(--gutter-size);
-    margin: 0 auto;
+.single-post {
+    display: flex;
+    justify-content: center;
+    opacity: 0;
+}
+
+.single-post img {
+    display: block;
 }
 
 .post {
@@ -73,6 +78,11 @@ body {
 
 .post figcaption p {
     margin: 1rem 0 0 0;
+}
+
+.grid-wrapper {
+    padding: var(--gutter-size);
+    margin: 0 auto;
 }
 
 .grid.are-images-unloaded {

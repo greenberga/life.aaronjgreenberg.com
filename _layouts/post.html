@@ -3,6 +3,34 @@ layout: default
 type: article
 ---
 
-{% include header.html %}
+<div class="single-post">
+  {{ content }}
+</div>
 
-{{ content }}
+<script>
+  var container, img, figcaption, imgAspectRatio;
+
+  function setSize () {
+      var vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+      var vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+      if ((vw / vh) > imgAspectRatio) {
+	  img.style.width = '';
+	  img.style.height = (vh - figcaption.offsetHeight) + 'px';
+      } else {
+	  img.style.width = vw + 'px';
+	  img.style.height = '';
+      }
+      container.style.opacity = 1;
+  };
+
+  window.addEventListener('load', function () {
+      container = document.querySelector('.single-post');
+      img = document.querySelector('img');
+      figcaption = document.querySelector('figcaption');
+      imgAspectRatio = img.width / img.height;
+
+      setSize();
+  });
+
+  window.addEventListener('resize', setSize);
+</script>
