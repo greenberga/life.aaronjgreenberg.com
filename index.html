@@ -11,7 +11,7 @@ extra_css: lightgallery-css.html
     <div class="grid-col-sizer"></div>
     <div class="grid-gutter-sizer"></div>
     {% for post in paginator.posts %}
-    <div class="grid-item">
+    <div class="grid-item" data-path="{{ post.id }}">
       {{ post.content }}
     </div>
     {% endfor %}
@@ -62,6 +62,26 @@ extra_css: lightgallery-css.html
   grid.addEventListener('lgAfterSlide', function (event) {
       if (event.detail.index === lg.items.length - 5) {
 	  infScroll.loadNextPage();
+      }
+
+      if (history.replaceState) {
+	  const currentEl = lg.items[lg.index];
+	  const path = currentEl.parentNode.dataset.path;
+	  if (!!path) {
+	      history.replaceState(null, '', path);
+	  }
+      }
+  });
+
+  var pathHolder;
+
+  grid.addEventListener('lgBeforeOpen', function () {
+      pathHolder = window.location.pathname;
+  });
+
+  grid.addEventListener('lgAfterClose', function () {
+      if (history.replaceState) {
+	  history.replaceState(null, '', pathHolder);
       }
   });
 </script>
